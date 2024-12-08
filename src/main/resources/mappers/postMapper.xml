@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.laphayen.board.mapper.PostMapper">
+
+    <!-- 게시글 등록 -->
+    <insert id="createPost" parameterType="com.laphayen.board.dto.PostDTO">
+        INSERT INTO post (title, contents, createTime, isAdmin, views, categoryId, userId, updateTime)
+        VALUES (#{title}, #{contents}, #{createTime}, #{isAdmin}, #{views}, #{categoryId}, #{userId}, #{updateTime})
+    </insert>
+
+    <!-- 모든 게시글 조회 -->
+    <select id="getAllPosts" resultType="com.laphayen.board.dto.PostDTO">
+        SELECT id, title, contents, createTime, isAdmin, views, categoryId, userId, updateTime
+        FROM post
+    </select>
+
+    <!-- 게시글 조회 -->
+    <select id="getPostById" resultType="com.laphayen.board.dto.PostDTO">
+        SELECT id, title, contents, createTime, isAdmin, views, categoryId, userId, updateTime
+        FROM post
+        WHERE id = #{postId}
+    </select>
+
+    <!-- 게시글 수정 -->
+    <update id="updatePost" parameterType="com.laphayen.board.dto.PostDTO">
+        UPDATE post
+        SET title = #{title}, contents = #{contents}, isAdmin = #{isAdmin}, categoryId = #{categoryId}, updateTime = #{updateTime}
+        WHERE id = #{id}
+    </update>
+
+    <!-- 게시글 삭제 -->
+    <delete id="deletePost" parameterType="int">
+        DELETE FROM post
+        WHERE id = #{postId}
+    </delete>
+
+</mapper>

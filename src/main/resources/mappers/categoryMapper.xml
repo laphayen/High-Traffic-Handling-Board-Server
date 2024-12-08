@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.laphayen.board.mapper.CategoryMapper">
+
+    <!-- 카테고리 등록 -->
+    <insert id="createCategory" parameterType="com.laphayen.board.dto.CategoryDTO">
+        INSERT INTO category (categoryName)
+        VALUES (#{categoryName})
+    </insert>
+
+    <!-- 카테고리 수정 -->
+    <update id="updateCategory" parameterType="map">
+        UPDATE category
+        SET categoryName = #{categoryName}
+        WHERE id = #{categoryId}
+    </update>
+
+    <!-- 카테고리 삭제 -->
+    <delete id="deleteCategory" parameterType="int">
+        DELETE FROM category
+        WHERE id = #{categoryId}
+    </delete>
+
+</mapper>
