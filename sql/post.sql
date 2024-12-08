@@ -1,0 +1,20 @@
+use hightrafficboard;
+
+DROP TABLE IF EXISTS `post`;
+
+CREATE TABLE `post` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(255) NOT NULL,
+  `contents` TEXT NOT NULL,
+  `createTime` DATETIME DEFAULT CURRENT_TIMESTAMP,
+  `isAdmin` TINYINT DEFAULT '0',
+  `views` INT DEFAULT '0',
+  `categoryId` INT NOT NULL,
+  `userId` INT NOT NULL,
+  `updateTime` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`categoryId`) REFERENCES `category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+select * from post;
