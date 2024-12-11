@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.laphayen.board.mapper.CommentMapper">
+
+    <!-- 댓글 등록 -->
+    <insert id="createComment" parameterType="com.laphayen.board.dto.CommentDTO">
+        INSERT INTO comment (postId, userId, subCommentId, contents, isDeleted, createTime, updateTime)
+        VALUES (#{postId}, #{userId}, #{subCommentId}, #{contents}, #{isDeleted}, NOW(), NOW())
+    </insert>
+
+    <!-- 게시글 ID로 댓글 조회 -->
+    <select id="getCommentsByPostId" resultType="com.laphayen.board.dto.CommentDTO">
+        SELECT id, postId, userId, subCommentId, contents, isDeleted, createTime, updateTime
+        FROM comment
+        WHERE postId = #{postId} AND isDeleted = 0
+    </select>
+
+    <!-- 댓글 수정 -->
+    <update id="updateComment" parameterType="com.laphayen.board.dto.CommentDTO">
+        UPDATE comment
+        SET contents = #{contents}, updateTime = NOW()
+        WHERE id = #{id} AND isDeleted = 0
+    </update>
+
+    <!-- 댓글 삭제 -->
+    <update id="deleteComment" parameterType="int">
+        UPDATE comment
+        SET isDeleted = 1
+        WHERE id = #{id}
+    </update>
+
+</mapper>
+
