@@ -6,7 +6,7 @@
 <mapper namespace="com.laphayen.board.mapper.PostMapper">
 
     <!-- 게시글 등록 -->
-    <insert id="createPost" parameterType="com.laphayen.board.dto.PostDTO">
+    <insert id="createPost" parameterType="com.laphayen.board.dto.PostDTO" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO post (title, contents, createTime, isAdmin, views, categoryId, userId, updateTime)
         VALUES (#{title}, #{contents}, #{createTime}, #{isAdmin}, #{views}, #{categoryId}, #{userId}, #{updateTime})
     </insert>
