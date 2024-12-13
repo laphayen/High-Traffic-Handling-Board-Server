@@ -6,6 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -21,5 +22,6 @@ public class PostDTO {
     private Integer categoryId;
     private Integer userId;
     private boolean isAdmin;
+    private List<TagDTO> tags;
 
 }

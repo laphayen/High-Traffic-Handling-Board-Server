@@ -48,4 +48,10 @@ public class PostController {
         return ResponseEntity.ok("게시글이 삭제되었습니다!");
     }
 
+    @PostMapping("/with-tags")
+    public ResponseEntity<?> createPostWithTags(@RequestBody PostDTO postDTO) {
+        postService.createPostWithTags(postDTO);
+        return ResponseEntity.ok().build();
+    }
+
 }
