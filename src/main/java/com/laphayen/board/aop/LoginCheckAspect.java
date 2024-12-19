@@ -43,7 +43,7 @@ public class LoginCheckAspect {
             throw new IllegalStateException("로그인이 필요합니다!");
         }
 
-        log.info("로그인 체크 통과: {}", loggedInUserId);
+//        log.info("로그인 체크 통과: {}", loggedInUserId);
     }
 
 }
